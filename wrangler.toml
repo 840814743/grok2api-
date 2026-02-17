@@ -13,18 +13,16 @@ region = "aws:us-east-1"
 [[d1_databases]]
 binding = "DB"
 database_name = "grok2api"
-# Filled by CI / your first deployment bootstrap.
-database_id = "REPLACE_WITH_D1_DATABASE_ID"
+# 已替换为你的 D1 Database ID
+database_id = "0e8bcf47-e1ba-4380-90de-3008bdf906da"
 migrations_dir = "migrations"
 
 [[kv_namespaces]]
 binding = "KV_CACHE"
-# Filled by CI / your first deployment bootstrap.
-id = "REPLACE_WITH_KV_NAMESPACE_ID"
+# 已替换为你的 KV Namespace ID
+id = "96b1183977724c5aa7cc461837872efd"
 
 # Durable Objects migrations history:
-# - do-v1 created AutoRegisterJob (now removed)
-# - do-v2 deletes it so the Worker can deploy without exporting the class
 [[migrations]]
 tag = "do-v1"
 new_sqlite_classes = ["AutoRegisterJob"]
@@ -35,16 +33,15 @@ deleted_classes = ["AutoRegisterJob"]
 
 [vars]
 # Daily reset at local midnight (default: Asia/Shanghai, UTC+8).
-# Make sure the cron below matches this offset.
 CACHE_RESET_TZ_OFFSET_MINUTES = "480"
 
-# Build info (CI will inject commit SHA into wrangler.ci.toml)
+# Build info
 BUILD_SHA = "dev"
 
 # Workers KV has per-value limits; keep <= 25MB.
 KV_CACHE_MAX_BYTES = "26214400"
 
-# Batch size for the daily cleanup job (deleting KV keys + D1 rows).
+# Batch size for the daily cleanup job.
 KV_CLEANUP_BATCH = "200"
 
 [triggers]
